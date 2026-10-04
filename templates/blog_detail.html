@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} | Abhi Verma's Blog{% endblock %}
+
+{% block content %}
+<!-- Blog Post Hero -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container" style="max-width: 860px;">
+    <div class="mb-4">
+      <a href="{{ url_for('main.blog') }}" class="btn btn-sm btn-custom-outline">
+        <i class="fas fa-arrow-left me-1"></i> Back to All Articles
+      </a>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 mb-3">
+      <span class="badge bg-primary px-3 py-2 rounded-pill font-bold">{{ post.category }}</span>
+      <span class="text-muted-custom font-mono small">• {{ post.read_time }}</span>
+      <span class="text-muted-custom font-mono small">• Published {{ post.published_at.strftime('%B %d, %Y') }}</span>
+    </div>
+
+    <h1 class="display-5 font-bold text-white mb-4">{{ post.title }}</h1>
+
+    <div class="d-flex align-items-center gap-3 pt-2">
+      <div class="logo-badge" style="width: 44px; height: 44px;">AV</div>
+      <div>
+        <strong class="text-white d-block">Abhi Verma</strong>
+        <span class="small text-muted-custom">CSE (AI &amp; ML) Student &amp; Developer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Blog Article Body -->
+<section class="section-padding">
+  <div class="container" style="max-width: 860px;">
+    <!-- Large Cover Graphic -->
+    <div class="custom-card mb-5 overflow-hidden border-glow">
+      <img src="{{ post.image_url }}" alt="{{ post.title }}" class="w-100 img-fluid">
+    </div>
+
+    <!-- Article Content -->
+    <div class="custom-card p-4 p-md-5 mb-5 fs-6 leading-relaxed blog-content-body">
+      <div class="text-secondary-custom">
+        {{ post.content | replace('\n', '<br>') | safe }}
+      </div>
+    </div>
+
+    <!-- Author Bio Card -->
+    <div class="custom-card p-4 mb-5 border-glow">
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-4">
+        <div class="logo-badge" style="width: 70px; height: 70px; font-size: 1.8rem;">{{ personal_info.initials }}</div>
+        <div>
+          <h5 class="font-bold text-white mb-1">Written by {{ personal_info.name }}</h5>
+          <p class="small text-secondary-custom mb-3">
+            B.Tech Computer Science student specializing in Artificial Intelligence &amp; Machine Learning. Writing about algorithm intuition, real-world data pipelines, and full-stack software development.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="{{ personal_info.github_url }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn btn-sm"><i class="fab fa-github"></i></a>
+            <a href="{{ personal_info.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn btn-sm"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:{{ personal_info.primary_email }}" class="social-icon-btn btn-sm"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent / Related Posts -->
+    {% if recent_posts %}
+    <div class="pt-4 border-top border-secondary border-opacity-25">
+      <h4 class="font-bold text-white mb-4">More Articles to Explore</h4>
+      <div class="row g-4">
+        {% for rel in recent_posts %}
+        <div class="col-md-4">
+          <div class="custom-card p-3 h-100 d-flex flex-column">
+            <span class="badge bg-secondary small mb-2 align-self-start">{{ rel.category }}</span>
+            <h6 class="font-bold text-white mb-2">
+              <a href="{{ url_for('main.blog_detail', slug=rel.slug) }}" class="text-white text-decoration-none hover-gradient small">{{ rel.title }}</a>
+            </h6>
+            <span class="small text-muted-custom mt-auto">{{ rel.read_time }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

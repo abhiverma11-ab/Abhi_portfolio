@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Experience &amp; Achievements | Abhi Verma - AI &amp; ML{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container text-center">
+    <div class="section-badge">
+      <i class="fas fa-history"></i> Milestones &amp; Track Record
+    </div>
+    <h1 class="display-4 font-bold mb-3">Experience &amp; <span class="text-gradient">Achievements</span></h1>
+    <p class="section-subheading">
+      A chronological account of academic milestones, summer training, hackathon victories, and technical leadership.
+    </p>
+  </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="section-padding">
+  <div class="container">
+    <div class="timeline-wrap">
+      {% for exp in experiences %}
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="custom-card timeline-content">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="timeline-date">{{ exp.start_date }} – {{ exp.end_date }}</span>
+            <span class="badge bg-primary bg-opacity-25 text-info border border-info border-opacity-25">{{ exp.role_type }}</span>
+          </div>
+
+          <h4 class="font-bold text-white mb-1">{{ exp.title }}</h4>
+          <p class="text-info font-bold small mb-2"><i class="{{ exp.icon }} me-1"></i> {{ exp.organization }} {% if exp.location %}• {{ exp.location }}{% endif %}</p>
+
+          <p class="text-secondary-custom small mb-3 leading-relaxed">
+            {{ exp.description }}
+          </p>
+
+          {% if exp.points_list() %}
+          <ul class="list-unstyled mb-3 small text-secondary-custom">
+            {% for point in exp.points_list() %}
+            <li class="mb-1 d-flex align-items-start gap-2">
+              <i class="fas fa-caret-right text-info mt-1"></i>
+              <span>{{ point }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- GitHub & Coding Society Section -->
+    <div class="row g-4 mt-5">
+      <div class="col-md-6">
+        <div class="custom-card p-4 h-100 border-glow">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="logo-badge"><i class="fab fa-github"></i></div>
+            <div>
+              <h5 class="font-bold text-white mb-0">Open Source &amp; GitHub Contributions</h5>
+              <span class="small text-muted-custom">@{{ personal_info.github_username }}</span>
+            </div>
+          </div>
+          <p class="text-secondary-custom small mb-3">
+            Actively maintaining repositories for machine learning roadmaps, dataset cleaning utilities, Flask project starters, and competitive programming templates in C++.
+          </p>
+          <a href="{{ personal_info.github_url }}" target="_blank" rel="noopener noreferrer" class="btn-custom-outline btn-sm">
+            <i class="fab fa-github"></i> Visit GitHub Profile
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="custom-card p-4 h-100 border-glow">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="logo-badge bg-warning text-dark"><i class="fas fa-users"></i></div>
+            <div>
+              <h5 class="font-bold text-white mb-0">College AI &amp; Coding Society</h5>
+              <span class="small text-muted-custom">Technical Core Member</span>
+            </div>
+          </div>
+          <p class="text-secondary-custom small mb-3">
+            Organizing peer coding workshops on Python and Data Structures, conducting introductory sessions on Git/GitHub, and collaborating in inter-college competitive coding tournaments.
+          </p>
+          <a href="{{ url_for('main.hackathons') }}" class="btn-custom-outline btn-sm">
+            <i class="fas fa-trophy"></i> View Hackathon Records
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

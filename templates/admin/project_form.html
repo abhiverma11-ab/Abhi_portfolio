@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} | Admin Dashboard{% endblock %}
+
+{% block content %}
+<section class="py-4 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="font-bold text-white mb-0">{{ title }}</h2>
+        <span class="small text-muted-custom">Fill in the fields to configure the project details.</span>
+      </div>
+      <div>
+        <a href="{{ url_for('admin.manage_projects') }}" class="btn-custom-outline btn-sm">
+          <i class="fas fa-arrow-left me-1"></i> Back to Projects
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="custom-card p-4 p-md-5 mx-auto" style="max-width: 900px;">
+      <form method="POST">
+        <div class="row g-4">
+          <!-- Title -->
+          <div class="col-md-8">
+            <label class="form-label small text-muted-custom font-bold">Project Title *</label>
+            <input type="text" name="title" value="{{ project.title if project else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required placeholder="e.g. StudyLens AI">
+          </div>
+
+          <!-- Category -->
+          <div class="col-md-4">
+            <label class="form-label small text-muted-custom font-bold">Category *</label>
+            <select name="category" class="form-select bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required>
+              <option value="AI" {% if project and project.category == 'AI' %}selected{% endif %}>AI</option>
+              <option value="Machine Learning" {% if project and project.category == 'Machine Learning' %}selected{% endif %}>Machine Learning</option>
+              <option value="Data Analysis" {% if project and project.category == 'Data Analysis' %}selected{% endif %}>Data Analysis</option>
+              <option value="Python" {% if project and project.category == 'Python' %}selected{% endif %}>Python</option>
+              <option value="Web Development" {% if project and project.category == 'Web Development' %}selected{% endif %}>Web Development</option>
+            </select>
+          </div>
+
+          <!-- Subtitle -->
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Subtitle / Tagline</label>
+            <input type="text" name="subtitle" value="{{ project.subtitle if project else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="e.g. AI-Powered Intelligent Academic Document & Research Assistant">
+          </div>
+
+          <!-- Technologies -->
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Technologies (Comma-separated) *</label>
+            <input type="text" name="technologies" value="{{ project.technologies if project else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required placeholder="Python, Flask, PyTorch, RAG, Bootstrap 5">
+          </div>
+
+          <!-- Description -->
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Comprehensive Overview / Description *</label>
+            <textarea name="description" rows="4" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required placeholder="Detailed explanation of what the project accomplishes...">{{ project.description if project else '' }}</textarea>
+          </div>
+
+          <!-- Problem Statement -->
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">Problem Statement</label>
+            <textarea name="problem_statement" rows="3" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="What challenge does this project solve?">{{ project.problem_statement if project else '' }}</textarea>
+          </div>
+
+          <!-- Solution -->
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">Engineered Solution</label>
+            <textarea name="solution" rows="3" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="How did you solve the problem?">{{ project.solution if project else '' }}</textarea>
+          </div>
+
+          <!-- Architecture Flow -->
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">System Architecture Flow</label>
+            <input type="text" name="architecture_desc" value="{{ project.architecture_desc if project else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="e.g. Ingestion -> Embeddings Vector Store -> LLM Context Retrieval -> Flask UI">
+          </div>
+
+          <!-- Features (Newline separated) -->
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Key Features (One feature per line)</label>
+            <textarea name="features" rows="4" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="Feature 1&#10;Feature 2&#10;Feature 3">{{ project.features if project else '' }}</textarea>
+          </div>
+
+          <!-- Challenges & Learnings -->
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">Challenges Faced</label>
+            <textarea name="challenges" rows="3" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="Technical hurdles encountered...">{{ project.challenges if project else '' }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">Key Learnings</label>
+            <textarea name="learnings" rows="3" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="What skills did you master?">{{ project.learnings if project else '' }}</textarea>
+          </div>
+
+          <!-- Image URL -->
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Image / Artwork Path</label>
+            <input type="text" name="image_url" value="{{ project.image_url if project else '/static/images/project-placeholder.svg' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none">
+          </div>
+
+          <!-- Links -->
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">GitHub Repository Link</label>
+            <input type="url" name="github_link" value="{{ project.github_link if project else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="https://github.com/abhi-verma/project">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">Live Demo / Deployment Link</label>
+            <input type="url" name="live_link" value="{{ project.live_link if project else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="https://my-project.demo.local">
+          </div>
+
+          <!-- Featured Checkbox -->
+          <div class="col-12">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="is_featured" name="is_featured" value="1" {% if project and project.is_featured %}checked{% endif %}>
+              <label class="form-check-label text-white" for="is_featured">Show in Featured Projects on Homepage</label>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="col-12 pt-3">
+            <button type="submit" class="btn-custom-primary btn-lg w-100 justify-content-center">
+              <i class="fas fa-save me-2"></i> Save Project Record
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

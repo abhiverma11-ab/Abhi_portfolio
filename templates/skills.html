@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills Dashboard | Abhi Verma - AI &amp; Software Engineer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container text-center">
+    <div class="section-badge">
+      <i class="fas fa-brain"></i> Technical Capabilities
+    </div>
+    <h1 class="display-4 font-bold mb-3">Skills &amp; <span class="text-gradient">Tech Stack</span></h1>
+    <p class="section-subheading">
+      An exhaustive overview of programming languages, machine learning frameworks, data science libraries, and modern development tools.
+    </p>
+  </div>
+</section>
+
+<!-- Skills Dashboard -->
+<section class="section-padding">
+  <div class="container">
+    <!-- Category Filter Tabs -->
+    <div class="filter-btn-group">
+      <button class="filter-btn active" data-filter="all">All Disciplines</button>
+      <button class="filter-btn" data-filter="Programming Languages">Programming Languages</button>
+      <button class="filter-btn" data-filter="Python & Data Science">Python &amp; Data Science</button>
+      <button class="filter-btn" data-filter="Machine Learning">Machine Learning</button>
+      <button class="filter-btn" data-filter="Web Development">Web Development</button>
+      <button class="filter-btn" data-filter="Tools & Platforms">Tools &amp; Platforms</button>
+    </div>
+
+    <!-- Categorized Grid of Skill Cards -->
+    <div class="row g-4 mb-5">
+      {% for category_name, skills_in_cat in categories.items() %}
+      <div class="col-lg-6 filterable-card" data-category="{{ category_name }}">
+        <div class="custom-card skill-category-card p-4">
+          <div class="d-flex align-items-center justify-content-between mb-4 pb-2 border-bottom border-secondary border-opacity-25">
+            <div class="d-flex align-items-center gap-3">
+              <div class="logo-badge">
+                {% if 'Programming' in category_name %}
+                  <i class="fas fa-code"></i>
+                {% elif 'Data Science' in category_name %}
+                  <i class="fas fa-chart-pie"></i>
+                {% elif 'Machine Learning' in category_name %}
+                  <i class="fas fa-brain"></i>
+                {% elif 'Web' in category_name %}
+                  <i class="fas fa-globe"></i>
+                {% else %}
+                  <i class="fas fa-tools"></i>
+                {% endif %}
+              </div>
+              <div>
+                <h4 class="font-bold text-white mb-0">{{ category_name }}</h4>
+                <span class="small text-muted-custom">{{ skills_in_cat|length }} Core Competencies</span>
+              </div>
+            </div>
+            <span class="badge bg-primary bg-opacity-25 text-info border border-info border-opacity-25">Domain</span>
+          </div>
+
+          <div class="d-flex flex-column gap-3">
+            {% for skill in skills_in_cat %}
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="d-flex align-items-center gap-2 text-white">
+                  <i class="{{ skill.icon_class }} text-info"></i>
+                  <span>{{ skill.name }}</span>
+                </span>
+                <span class="font-mono text-info font-bold">{{ skill.proficiency }}%</span>
+              </div>
+              <div class="skill-progress-track">
+                <div class="skill-progress-bar" style="width: {{ skill.proficiency }}%;"></div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Interactive Technology Badge Cloud -->
+    <div class="custom-card p-4 p-md-5 border-glow text-center">
+      <h3 class="font-bold text-white mb-3">
+        <i class="fas fa-layer-group text-info me-2"></i> Technology Stack at a Glance
+      </h3>
+      <p class="text-secondary-custom mb-4" style="max-width: 700px; margin: 0 auto;">
+        Interactive tag cloud reflecting hands-on tools utilized across my B.Tech coursework, summer training, and personal AI projects.
+      </p>
+
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        {% for skill in all_skills %}
+        <div class="tech-tag py-2 px-3 fs-6 custom-card">
+          <i class="{{ skill.icon_class }} text-info fs-5"></i>
+          <span class="font-bold">{{ skill.name }}</span>
+          <span class="badge bg-secondary bg-opacity-50 small ms-1">{{ skill.proficiency }}%</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

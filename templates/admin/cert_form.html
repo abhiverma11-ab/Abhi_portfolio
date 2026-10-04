@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} | Admin Dashboard{% endblock %}
+
+{% block content %}
+<section class="py-4 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="font-bold text-white mb-0">{{ title }}</h2>
+        <span class="small text-muted-custom">Configure certificate information.</span>
+      </div>
+      <div>
+        <a href="{{ url_for('admin.manage_certificates') }}" class="btn-custom-outline btn-sm">
+          <i class="fas fa-arrow-left me-1"></i> Back to Certificates
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="custom-card p-4 p-md-5 mx-auto" style="max-width: 750px;">
+      <form method="POST">
+        <div class="row g-4">
+          <div class="col-md-8">
+            <label class="form-label small text-muted-custom font-bold">Certificate Title *</label>
+            <input type="text" name="title" value="{{ cert.title if cert else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required placeholder="e.g. Python for Data Science & AI">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small text-muted-custom font-bold">Category *</label>
+            <select name="category" class="form-select bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required>
+              <option value="Training" {% if cert and cert.category == 'Training' %}selected{% endif %}>Training</option>
+              <option value="Python" {% if cert and cert.category == 'Python' %}selected{% endif %}>Python</option>
+              <option value="Machine Learning" {% if cert and cert.category == 'Machine Learning' %}selected{% endif %}>Machine Learning</option>
+              <option value="Web Development" {% if cert and cert.category == 'Web Development' %}selected{% endif %}>Web Development</option>
+              <option value="Hackathons" {% if cert and cert.category == 'Hackathons' %}selected{% endif %}>Hackathons</option>
+              <option value="Programming" {% if cert and cert.category == 'Programming' %}selected{% endif %}>Programming</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">Issuing Organization *</label>
+            <input type="text" name="issuing_org" value="{{ cert.issuing_org if cert else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required placeholder="e.g. IBM / Coursera">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">Issue Date *</label>
+            <input type="text" name="issue_date" value="{{ cert.issue_date if cert else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required placeholder="e.g. August 2025">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Verification URL</label>
+            <input type="text" name="credential_url" value="{{ cert.credential_url if cert else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="https://coursera.org/verify/...">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Image / Badge Path</label>
+            <input type="text" name="image_url" value="{{ cert.image_url if cert else '/static/images/certificate-placeholder.svg' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Short Description</label>
+            <textarea name="description" rows="3" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="Brief outline of skills certified...">{{ cert.description if cert else '' }}</textarea>
+          </div>
+
+          <div class="col-12 pt-3">
+            <button type="submit" class="btn-custom-primary btn-lg w-100 justify-content-center">
+              <i class="fas fa-save me-2"></i> Save Certificate
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

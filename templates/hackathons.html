@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Hackathons &amp; Events | Abhi Verma - AI &amp; Software Engineer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container text-center">
+    <div class="section-badge">
+      <i class="fas fa-trophy"></i> Competitive Engineering
+    </div>
+    <h1 class="display-4 font-bold mb-3">Hackathons &amp; <span class="text-gradient">Tech Events</span></h1>
+    <p class="section-subheading">
+      Rapid prototyping under pressure, designing real-time AI solutions, and presenting technical architectures to juries.
+    </p>
+  </div>
+</section>
+
+<!-- Hackathon Showcase Cards -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row g-5">
+      {% for event in hackathons %}
+      <div class="col-12">
+        <div class="custom-card p-4 p-md-5 border-glow">
+          <div class="row align-items-center g-4">
+            <!-- Event Visual / Graphic -->
+            <div class="col-lg-5">
+              <div class="rounded-3 overflow-hidden border border-secondary shadow-lg">
+                <img src="{{ event.image_url }}" alt="{{ event.title }}" class="w-100 img-fluid">
+              </div>
+            </div>
+
+            <!-- Event Details -->
+            <div class="col-lg-7">
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                <span class="badge bg-warning text-dark font-bold px-3 py-2 rounded-pill fs-6">
+                  <i class="fas fa-medal me-1"></i> {{ event.achievement }}
+                </span>
+                <span class="text-muted-custom font-mono small">{{ event.event_date }}</span>
+              </div>
+
+              <h2 class="font-bold text-white mb-1">{{ event.title }}</h2>
+              <p class="text-info font-bold mb-4">{{ event.event_name }}</p>
+
+              <!-- Problem & Solution -->
+              <div class="mb-3">
+                <span class="small font-bold text-danger d-block mb-1"><i class="fas fa-exclamation-circle me-1"></i> Problem Statement:</span>
+                <p class="text-secondary-custom small mb-0">{{ event.problem_statement }}</p>
+              </div>
+
+              <div class="mb-3">
+                <span class="small font-bold text-success d-block mb-1"><i class="fas fa-check-circle me-1"></i> Solution Engineered:</span>
+                <p class="text-secondary-custom small mb-0">{{ event.solution }}</p>
+              </div>
+
+              <div class="row g-2 mb-4 pt-2">
+                <div class="col-sm-6">
+                  <div class="p-2 bg-secondary bg-opacity-10 rounded-3">
+                    <span class="small text-muted-custom d-block">My Role:</span>
+                    <strong class="text-white small">{{ event.role }}</strong>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="p-2 bg-secondary bg-opacity-10 rounded-3">
+                    <span class="small text-muted-custom d-block">Tech Stack:</span>
+                    <strong class="text-info small font-mono">{{ event.tech_stack }}</strong>
+                  </div>
+                </div>
+              </div>
+
+              {% if event.project_link and event.project_link != '#' %}
+              <a href="{{ event.project_link }}" class="btn-custom-primary">
+                <span>View Linked Project Deep Dive</span> <i class="fas fa-arrow-right"></i>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Skills | Admin Dashboard{% endblock %}
+
+{% block content %}
+<section class="py-4 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="font-bold text-white mb-0">Skills Management</h2>
+        <span class="small text-muted-custom">Update skill categories, proficiency meters, and icon classes.</span>
+      </div>
+      <div>
+        <a href="{{ url_for('admin.add_skill') }}" class="btn-custom-primary">
+          <i class="fas fa-plus"></i> Add New Skill
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Admin Management Bar -->
+<section class="py-3 bg-secondary bg-opacity-10 border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="d-flex flex-wrap gap-2">
+      <a href="{{ url_for('admin.dashboard') }}" class="btn btn-sm btn-custom-outline">Overview</a>
+      <a href="{{ url_for('admin.manage_projects') }}" class="btn btn-sm btn-custom-outline">Manage Projects</a>
+      <a href="{{ url_for('admin.manage_blogs') }}" class="btn btn-sm btn-custom-outline">Manage Blogs</a>
+      <a href="{{ url_for('admin.manage_certificates') }}" class="btn btn-sm btn-custom-outline">Manage Certificates</a>
+      <a href="{{ url_for('admin.manage_skills') }}" class="btn btn-sm btn-custom-primary">Manage Skills</a>
+      <a href="{{ url_for('admin.manage_messages') }}" class="btn btn-sm btn-custom-outline">Inquiries Inbox</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="custom-card p-4">
+      <div class="table-responsive">
+        <table class="table table-dark table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th scope="col">Order</th>
+              <th scope="col">Skill Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Proficiency</th>
+              <th scope="col">Icon</th>
+              <th scope="col" class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for skill in skills %}
+            <tr>
+              <td class="font-mono text-muted-custom">{{ skill.display_order }}</td>
+              <td><strong class="text-white">{{ skill.name }}</strong></td>
+              <td><span class="badge bg-secondary">{{ skill.category }}</span></td>
+              <td>
+                <div class="d-flex align-items-center gap-2" style="max-width: 160px;">
+                  <div class="progress flex-grow-1 bg-secondary" style="height: 6px;">
+                    <div class="progress-bar bg-info" style="width: {{ skill.proficiency }}%;"></div>
+                  </div>
+                  <span class="small font-mono text-info">{{ skill.proficiency }}%</span>
+                </div>
+              </td>
+              <td><i class="{{ skill.icon_class }} fs-5 text-info"></i></td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-2">
+                  <a href="{{ url_for('admin.edit_skill', id=skill.id) }}" class="btn btn-sm btn-custom-outline" title="Edit Skill">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <form method="POST" action="{{ url_for('admin.delete_skill', id=skill.id) }}" onsubmit="return confirm('Delete this skill?');">
+                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Skill">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

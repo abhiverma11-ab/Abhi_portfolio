@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% block title %}About Me | Abhi Verma - AI &amp; ML Engineer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container text-center">
+    <div class="section-badge">
+      <i class="fas fa-user-astronaut"></i> Biography &amp; Background
+    </div>
+    <h1 class="display-4 font-bold mb-3">About <span class="text-gradient">Abhi Verma</span></h1>
+    <p class="section-subheading">
+      Discover my academic journey, core strengths, technical curiosity, and vision for AI engineering.
+    </p>
+  </div>
+</section>
+
+<!-- Main About Bio & Stats -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row align-items-center g-5 mb-5">
+      <div class="col-lg-5 text-center">
+        <div class="hero-avatar-wrapper">
+          <div class="hero-avatar-glow"></div>
+          <img src="{{ personal_info.profile_image_url }}" alt="{{ personal_info.name }}" class="hero-avatar-img shadow-lg" style="object-fit: cover; object-position: center top;">
+        </div>
+        <div class="mt-3">
+          <span class="tech-tag"><i class="fas fa-map-marker-alt text-info me-1"></i>{{ personal_info.location }}</span>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <h3 class="font-bold text-white mb-3">
+          Passionate Computer Science Student &amp; <span class="text-gradient">AI Specialist</span>
+        </h3>
+        <p class="text-secondary-custom leading-relaxed mb-3">
+          I am <strong>{{ personal_info.name }}</strong>, a Computer Science Engineering student specializing in <strong>Artificial Intelligence &amp; Machine Learning ({{ personal_info.graduation_period }})</strong>. My focus revolves around developing intelligent algorithmic systems, processing high-dimensional data, and deploying production-ready machine learning pipelines.
+        </p>
+        <p class="text-secondary-custom leading-relaxed mb-4">
+          I have hands-on experience building full-stack web applications with Flask, conducting in-depth exploratory data analysis with Pandas &amp; NumPy, and implementing modern machine learning models with Scikit-learn and PyTorch. I thrive in challenging environments where software architecture meets cutting-edge AI research.
+        </p>
+
+        <!-- Personal Strengths Grid -->
+        <h5 class="font-bold text-white mb-3"><i class="fas fa-star text-warning me-2"></i> Personal Strengths &amp; Competencies</h5>
+        <div class="row g-2 mb-4">
+          <div class="col-sm-6">
+            <div class="p-2 custom-card d-flex align-items-center gap-2">
+              <i class="fas fa-check-circle text-info"></i>
+              <span class="small font-bold">Algorithmic Problem Solving</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="p-2 custom-card d-flex align-items-center gap-2">
+              <i class="fas fa-check-circle text-info"></i>
+              <span class="small font-bold">Quick Technical Learner</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="p-2 custom-card d-flex align-items-center gap-2">
+              <i class="fas fa-check-circle text-info"></i>
+              <span class="small font-bold">Teamwork &amp; Git Collaboration</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="p-2 custom-card d-flex align-items-center gap-2">
+              <i class="fas fa-check-circle text-info"></i>
+              <span class="small font-bold">Creative Solution Design</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="p-2 custom-card d-flex align-items-center gap-2">
+              <i class="fas fa-check-circle text-info"></i>
+              <span class="small font-bold">Clear Technical Communication</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="p-2 custom-card d-flex align-items-center gap-2">
+              <i class="fas fa-check-circle text-info"></i>
+              <span class="small font-bold">High Adaptability &amp; Grit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3">
+          <a href="{{ url_for('main.resume') }}" class="btn-custom-primary">
+            <i class="fas fa-file-alt"></i> View Complete Resume
+          </a>
+          <a href="{{ url_for('main.contact') }}" class="btn-custom-outline">
+            <i class="fas fa-paper-plane"></i> Let's Connect
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Statistics Row -->
+    <div class="row g-4 my-5">
+      <div class="col-md-3 col-6">
+        <div class="stat-box">
+          <div class="stat-number text-gradient" data-count="10" data-suffix="+">0</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-box">
+          <div class="stat-number text-gradient" data-count="18" data-suffix="+">0</div>
+          <div class="stat-label">Technologies Mastered</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-box">
+          <div class="stat-number text-gradient" data-count="1" data-suffix=" Full">0</div>
+          <div class="stat-label">Summer Training Program</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-box">
+          <div class="stat-number text-gradient" data-count="15" data-suffix="+">0</div>
+          <div class="stat-label">GitHub Repositories</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education Timeline -->
+    <div class="pt-5">
+      <div class="text-center section-title-wrap">
+        <div class="section-badge">
+          <i class="fas fa-graduation-cap"></i> Academic Pathway
+        </div>
+        <h2 class="section-heading">
+          Education &amp; <span class="text-gradient">Milestones</span>
+        </h2>
+      </div>
+
+      <div class="timeline-wrap">
+        <!-- Education 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="custom-card timeline-content">
+            <div class="timeline-date">2024 – 2028 (Current Student)</div>
+            <h4 class="font-bold text-white mb-1">Bachelor of Technology (B.Tech) in Computer Science &amp; Engineering</h4>
+            <p class="text-info font-bold small mb-2">Specialization: Artificial Intelligence &amp; Machine Learning</p>
+            <p class="text-secondary-custom small mb-3">
+              Engaged in rigorous undergraduate study covering Data Structures, Algorithmic Analysis, Discrete Mathematics, Database Systems, Object-Oriented Architecture, and Machine Learning theory.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="tech-tag">Data Structures</span>
+              <span class="tech-tag">Algorithms</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Machine Learning</span>
+              <span class="tech-tag">DBMS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Training 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="custom-card timeline-content">
+            <div class="timeline-date">Summer 2025</div>
+            <h4 class="font-bold text-white mb-1">Industry Summer Training Intern</h4>
+            <p class="text-info font-bold small mb-2">Apex AI &amp; Data Analytics Labs</p>
+            <p class="text-secondary-custom small mb-3">
+              Immersive practical curriculum focused on Python, Pandas data wrangling, Matplotlib &amp; Plotly visualizations, and training supervised Scikit-learn models. Built the end-to-end IPL Data Analysis &amp; Prediction Dashboard.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">NumPy</span>
+              <span class="tech-tag">Scikit-learn</span>
+              <span class="tech-tag">Streamlit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schooling 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="custom-card timeline-content">
+            <div class="timeline-date">Completed 2024</div>
+            <h4 class="font-bold text-white mb-1">Higher Secondary Education (Class XII - PCM &amp; CS)</h4>
+            <p class="text-info font-bold small mb-2">Physics, Chemistry, Mathematics &amp; Computer Science</p>
+            <p class="text-secondary-custom small mb-0">
+              Developed strong mathematical foundations in Calculus, Linear Algebra, and foundational C++ programming.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Journey Narrative -->
+    <div class="mt-5 p-4 p-md-5 custom-card border-glow">
+      <h3 class="font-bold text-white mb-3">
+        <i class="fas fa-route text-info me-2"></i> My Learning Journey: From Basics to AI Engineering
+      </h3>
+      <p class="text-secondary-custom leading-relaxed mb-3">
+        My technological journey began with understanding computer architecture and memory management through C and C++. Writing algorithms from scratch instilled a profound appreciation for computational efficiency, time complexity, and memory pointers.
+      </p>
+      <p class="text-secondary-custom leading-relaxed mb-3">
+        Transitioning into Python broadened my horizons into data science. Working with large datasets using Pandas and NumPy revealed the power of vectorized operations and statistical analysis. From there, diving into Scikit-learn algorithms—such as Linear and Logistic Regression, Decision Trees, and K-Means clustering—cemented my passion for machine learning.
+      </p>
+      <p class="text-secondary-custom leading-relaxed mb-0">
+        Today, I am actively building end-to-end full-stack AI applications with Flask, exploring Retrieval-Augmented Generation (RAG) pipelines, and preparing to build next-generation scalable AI tools.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

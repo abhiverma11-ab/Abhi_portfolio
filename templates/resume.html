@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% block title %}Resume | Abhi Verma - AI &amp; Software Engineer{% endblock %}
+
+{% block content %}
+<!-- Resume Action Header (No Print) -->
+<section class="py-4 bg-glass border-bottom border-secondary border-opacity-25 no-print">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div>
+        <h2 class="font-bold text-white mb-0">Professional <span class="text-gradient">Curriculum Vitae</span></h2>
+        <span class="small text-muted-custom">Interactive Web Resume • Printable &amp; ATS-Ready Layout</span>
+      </div>
+      <div class="d-flex gap-2">
+        <button onclick="window.print()" class="btn-custom-primary">
+          <i class="fas fa-print me-1"></i> Print / Download PDF
+        </button>
+        <a href="{{ url_for('main.download_resume') }}" class="btn-custom-primary">
+          <i class="fas fa-file-download me-1"></i> Download Real Resume
+        </a>
+        <a href="mailto:{{ personal_info.primary_email }}" class="btn-custom-outline">
+          <i class="fas fa-envelope me-1"></i> Hire / Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Resume Document Canvas -->
+<section class="py-5">
+  <div class="container">
+    <div class="custom-card p-4 p-md-5 resume-container mx-auto" style="max-width: 900px;">
+      
+      <!-- Resume Header -->
+      <div class="resume-header pb-4 mb-4 border-bottom border-secondary border-opacity-25">
+        <div class="row align-items-center g-3">
+          <div class="col-md-8">
+            <h1 class="font-bold text-white mb-1" style="font-size: 2.4rem;">{{ personal_info.name | upper }}</h1>
+            <p class="text-info font-bold fs-6 mb-2">{{ personal_info.degree }} (Specialization: {{ personal_info.specialization }})</p>
+            <p class="text-secondary-custom small mb-0">
+              Passionate developer specializing in Python, Machine Learning models, Exploratory Data Analysis, and scalable Full-Stack Flask applications.
+            </p>
+          </div>
+          <div class="col-md-4 text-md-end text-start small text-secondary-custom">
+            <p class="mb-1"><i class="fas fa-envelope text-info me-2"></i>
+              <a href="mailto:{{ personal_info.primary_email }}" class="text-secondary-custom text-decoration-none">{{ personal_info.primary_email }}</a>
+            </p>
+            <p class="mb-1"><i class="fas fa-phone text-info me-2"></i>
+              <a href="tel:{{ personal_info.phone_tel }}" class="text-secondary-custom text-decoration-none">{{ personal_info.phone_formatted }}</a>
+            </p>
+            <p class="mb-1"><i class="fab fa-linkedin text-info me-2"></i>
+              <a href="{{ personal_info.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="text-secondary-custom text-decoration-none">linkedin.com/in/abhi-verma-56746032a</a>
+            </p>
+            <p class="mb-1"><i class="fab fa-github text-info me-2"></i>
+              <a href="{{ personal_info.github_url }}" target="_blank" rel="noopener noreferrer" class="text-secondary-custom text-decoration-none">github.com/{{ personal_info.github_username }}</a>
+            </p>
+            <p class="mb-0"><i class="fas fa-map-marker-alt text-info me-2"></i> {{ personal_info.location }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1. Education -->
+      <div class="mb-4">
+        <h5 class="font-bold text-gradient text-uppercase resume-section-title mb-3">
+          <i class="fas fa-graduation-cap me-2"></i> Education
+        </h5>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-baseline mb-1">
+            <strong class="text-white fs-6">Bachelor of Technology (B.Tech) - CSE (AI &amp; ML)</strong>
+            <span class="badge bg-primary small font-mono">2024 – 2028</span>
+          </div>
+          <p class="text-info small mb-1">Engineering Institute / University</p>
+          <p class="small text-secondary-custom mb-0">
+            <strong>Key Coursework:</strong> Data Structures &amp; Algorithms, Object-Oriented Programming, Python Programming, Machine Learning Foundations, Database Management Systems (SQL), Discrete Mathematics.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2. Technical Skills -->
+      <div class="mb-4">
+        <h5 class="font-bold text-gradient text-uppercase resume-section-title mb-3">
+          <i class="fas fa-cogs me-2"></i> Technical Skills
+        </h5>
+        <div class="row g-2 small">
+          <div class="col-sm-6">
+            <strong class="text-white d-block">Programming Languages:</strong>
+            <span class="text-secondary-custom">Python, C++, C, SQL, JavaScript, HTML5, CSS3</span>
+          </div>
+          <div class="col-sm-6">
+            <strong class="text-white d-block">Python &amp; Data Science:</strong>
+            <span class="text-secondary-custom">Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Plotly</span>
+          </div>
+          <div class="col-sm-6">
+            <strong class="text-white d-block">Web Development:</strong>
+            <span class="text-secondary-custom">Flask, Jinja2, Bootstrap 5, RESTful APIs, SQLite, SQLAlchemy</span>
+          </div>
+          <div class="col-sm-6">
+            <strong class="text-white d-block">Machine Learning &amp; AI:</strong>
+            <span class="text-secondary-custom">Regression, Decision Trees, Random Forests, KNN, SVM, K-Means, RAG, PyTorch Basics</span>
+          </div>
+          <div class="col-12">
+            <strong class="text-white d-block">Tools &amp; Developer Ecosystem:</strong>
+            <span class="text-secondary-custom">Git, GitHub, VS Code, Jupyter Notebook, Streamlit, Postman</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Projects -->
+      <div class="mb-4">
+        <h5 class="font-bold text-gradient text-uppercase resume-section-title mb-3">
+          <i class="fas fa-laptop-code me-2"></i> Key Technical Projects
+        </h5>
+
+        <!-- Project 1 -->
+        <div class="mb-3 pb-2">
+          <div class="d-flex justify-content-between align-items-baseline mb-1">
+            <strong class="text-white fs-6">StudyLens AI – RAG Academic Assistant</strong>
+            <span class="small text-muted-custom font-mono">Python, Flask, PyTorch, RAG</span>
+          </div>
+          <p class="small text-secondary-custom mb-1">
+            • Developed an AI-powered academic learning platform using Retrieval-Augmented Generation (RAG) to parse PDFs and answer contextual queries with exact page citations.<br>
+            • Built automated quiz/flashcard generators and integrated vector similarity search for sub-second query retrieval.
+          </p>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="mb-3 pb-2">
+          <div class="d-flex justify-content-between align-items-baseline mb-1">
+            <strong class="text-white fs-6">IPL Data Analysis &amp; Match Predictor Dashboard</strong>
+            <span class="small text-muted-custom font-mono">Python, Pandas, Plotly, Streamlit</span>
+          </div>
+          <p class="small text-secondary-custom mb-1">
+            • Cleaned, wrangled, and aggregated 15+ years of historical ball-by-ball IPL records to formulate custom strike-rate impact indices and powerplay metrics.<br>
+            • Built interactive dynamic dashboards featuring head-to-head franchise charts and win probability indicators.
+          </p>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="mb-3 pb-2">
+          <div class="d-flex justify-content-between align-items-baseline mb-1">
+            <strong class="text-white fs-6">Train Traffic Control AI – Railway Digital Twin</strong>
+            <span class="small text-muted-custom font-mono">Python, Flask, AI Algorithms, WebSockets</span>
+          </div>
+          <p class="small text-secondary-custom mb-1">
+            • Engineered a digital twin heuristic simulator to detect railway junction bottlenecks and dynamically reschedule train priorities to mitigate network delays.<br>
+            • Participated in Smart India Hackathon (Internal Round) with AI Train Traffic Control System.
+          </p>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="mb-2">
+          <div class="d-flex justify-content-between align-items-baseline mb-1">
+            <strong class="text-white fs-6">AI Career Guidance &amp; Skill Recommendation Engine</strong>
+            <span class="small text-muted-custom font-mono">Python, Scikit-learn, Flask</span>
+          </div>
+          <p class="small text-secondary-custom mb-0">
+            • Trained supervised classification models (Random Forest, XGBoost) to recommend career roadmaps and course modules based on student aptitude and skill matrices.
+          </p>
+        </div>
+      </div>
+
+      <!-- 4. Summer Training & Experience -->
+      <div class="mb-4">
+        <h5 class="font-bold text-gradient text-uppercase resume-section-title mb-3">
+          <i class="fas fa-briefcase me-2"></i> Practical Training &amp; Experience
+        </h5>
+        <div>
+          <div class="d-flex justify-content-between align-items-baseline mb-1">
+            <strong class="text-white fs-6">Summer Training Intern (Data Science &amp; ML)</strong>
+            <span class="badge bg-secondary small font-mono">June 2025 – August 2025</span>
+          </div>
+          <p class="text-info small mb-1">Apex AI &amp; Data Analytics Labs</p>
+          <p class="small text-secondary-custom mb-0">
+            • Completed intensive practical coursework covering Pandas, NumPy, Scikit-learn, and model deployment.<br>
+            • Built capstone projects, collaborated via Git version control, and earned Grade A+ Excellence recognition.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5. Certifications & Achievements -->
+      <div>
+        <h5 class="font-bold text-gradient text-uppercase resume-section-title mb-3">
+          <i class="fas fa-trophy me-2"></i> Key Certifications &amp; Honors
+        </h5>
+        <ul class="list-unstyled small text-secondary-custom mb-0">
+          <li class="mb-1">• <strong>@HACKMoR 2026 Hackathon Final Round Finalist</strong> – Manav Rachna University (2026)</li>
+          <li class="mb-1">• <strong>Smart India Hackathon Participation Certificate</strong> – Ministry of Education / JMIETI (2024 &amp; 2025)</li>
+          <li class="mb-1">• <strong>Drone Technology &amp; Applications Bootcamp</strong> – NIT Kurukshetra &amp; JMIETI (2024)</li>
+          <li class="mb-1">• <strong>Additional Input Course in Web Development</strong> – JMIETI CSE Department (2024)</li>
+          <li class="mb-0">• <strong>Summer Training Certificate in Python &amp; AI/ML</strong> – Apex AI Labs (2025)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

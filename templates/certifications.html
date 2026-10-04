@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Certifications Gallery | Abhi Verma - AI &amp; ML{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container text-center">
+    <div class="section-badge">
+      <i class="fas fa-award"></i> Verified Accreditations
+    </div>
+    <h1 class="display-4 font-bold mb-3">Certifications <span class="text-gradient">Gallery</span></h1>
+    <p class="section-subheading">
+      Professional coursework, hackathon recognitions, and industry-standard certifications in AI, Machine Learning, Python, and Software Development.
+    </p>
+  </div>
+</section>
+
+<!-- Certifications Grid -->
+<section class="section-padding">
+  <div class="container">
+    <!-- Category Filter Tabs -->
+    <div class="filter-btn-group">
+      {% for cat in categories %}
+      <button class="filter-btn {{ 'active' if selected_category == cat or (not selected_category and cat == 'All') else '' }}" data-filter="{{ cat }}">{{ cat }}</button>
+      {% endfor %}
+    </div>
+
+    <!-- Certificate Cards -->
+    <div class="row g-4" id="certsContainer">
+      {% for cert in certificates %}
+      <div class="col-lg-4 col-md-6 filterable-card" data-category="{{ cert.category }}">
+        <div class="custom-card cert-card h-100 d-flex flex-column" data-bs-toggle="modal" data-bs-target="#certModal"
+             data-cert-title="{{ cert.title }}"
+             data-cert-org="{{ cert.issuing_org }}"
+             data-cert-date="{{ cert.issue_date }}"
+             data-cert-img="{{ cert.image_url }}"
+             data-cert-desc="{{ cert.description }}">
+          <div class="cert-img-wrap">
+            <img src="{{ cert.image_url }}" alt="{{ cert.title }}" loading="lazy">
+            <div class="cert-overlay">
+              <span class="btn btn-sm btn-custom-primary"><i class="fas fa-search-plus me-1"></i> Preview Certificate</span>
+            </div>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="badge bg-primary bg-opacity-25 text-info border border-info border-opacity-25 small">{{ cert.category }}</span>
+              <span class="small text-muted-custom font-mono">{{ cert.issue_date }}</span>
+            </div>
+            <h5 class="font-bold text-white mb-1">{{ cert.title }}</h5>
+            <p class="small text-info mb-2 font-bold">{{ cert.issuing_org }}</p>
+            <p class="small text-secondary-custom mb-3 flex-grow-1">{{ cert.description }}</p>
+            <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto d-flex justify-content-between align-items-center">
+              <span class="small text-muted-custom"><i class="fas fa-shield-alt text-success me-1"></i> Verified</span>
+              <button type="button" class="btn btn-sm btn-custom-outline py-1 px-3">
+                <i class="fas fa-expand me-1"></i> View Full
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

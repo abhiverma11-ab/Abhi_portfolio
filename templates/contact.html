@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact &amp; Connect | Abhi Verma - AI &amp; Software Developer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container text-center">
+    <div class="section-badge">
+      <i class="fas fa-paper-plane"></i> Let's Collaborate
+    </div>
+    <h1 class="display-4 font-bold mb-3">Get In <span class="text-gradient">Touch</span></h1>
+    <p class="section-subheading">
+      Have a project idea, internship opportunity, research collaboration, or question? Send a message and let's connect.
+    </p>
+  </div>
+</section>
+
+<!-- Contact Form & Info Grid -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row g-5">
+      <!-- Left Column: Contact Details & Social Cards -->
+      <div class="col-lg-5">
+        <div class="custom-card p-4 p-md-5 h-100 border-glow d-flex flex-column justify-content-between">
+          <div>
+            <h3 class="font-bold text-white mb-3">Contact Information</h3>
+            <p class="text-secondary-custom leading-relaxed mb-4">
+              I am currently open to AI/ML internships, research assistantships, open-source projects, and full-stack software development engagements.
+            </p>
+
+            <div class="d-flex flex-column gap-3 mb-4">
+              <!-- Primary Email -->
+              <div class="d-flex align-items-center gap-3 p-3 bg-secondary bg-opacity-10 rounded-3">
+                <div class="logo-badge bg-primary"><i class="fas fa-envelope"></i></div>
+                <div>
+                  <span class="small text-muted-custom d-block">Primary Email</span>
+                  <a href="mailto:{{ personal_info.primary_email }}" class="text-white font-bold text-decoration-none hover-gradient">
+                    {{ personal_info.primary_email }}
+                  </a>
+                </div>
+              </div>
+
+              <!-- Secondary Email -->
+              <div class="d-flex align-items-center gap-3 p-3 bg-secondary bg-opacity-10 rounded-3">
+                <div class="logo-badge bg-primary bg-opacity-75"><i class="fas fa-at"></i></div>
+                <div>
+                  <span class="small text-muted-custom d-block">Alternate Email</span>
+                  <a href="mailto:{{ personal_info.secondary_email }}" class="text-white font-bold text-decoration-none hover-gradient">
+                    {{ personal_info.secondary_email }}
+                  </a>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="d-flex align-items-center gap-3 p-3 bg-secondary bg-opacity-10 rounded-3">
+                <div class="logo-badge bg-warning"><i class="fas fa-phone text-dark"></i></div>
+                <div>
+                  <span class="small text-muted-custom d-block">Phone / WhatsApp</span>
+                  <a href="tel:{{ personal_info.phone_tel }}" class="text-white font-bold text-decoration-none hover-gradient">
+                    {{ personal_info.phone_formatted }}
+                  </a>
+                  &nbsp;
+                  <a href="{{ personal_info.whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="badge bg-success text-decoration-none small">
+                    <i class="fab fa-whatsapp me-1"></i>WhatsApp
+                  </a>
+                </div>
+              </div>
+
+              <!-- LinkedIn -->
+              <div class="d-flex align-items-center gap-3 p-3 bg-secondary bg-opacity-10 rounded-3">
+                <div class="logo-badge bg-info"><i class="fab fa-linkedin-in text-white"></i></div>
+                <div>
+                  <span class="small text-muted-custom d-block">LinkedIn Profile</span>
+                  <a href="{{ personal_info.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="text-white font-bold text-decoration-none hover-gradient">
+                    linkedin.com/in/abhi-verma-56746032a
+                  </a>
+                </div>
+              </div>
+
+              <!-- GitHub -->
+              <div class="d-flex align-items-center gap-3 p-3 bg-secondary bg-opacity-10 rounded-3">
+                <div class="logo-badge bg-dark"><i class="fab fa-github text-white"></i></div>
+                <div>
+                  <span class="small text-muted-custom d-block">GitHub Portfolio</span>
+                  <a href="{{ personal_info.github_url }}" target="_blank" rel="noopener noreferrer" class="text-white font-bold text-decoration-none hover-gradient">
+                    github.com/{{ personal_info.github_username }}
+                  </a>
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div class="d-flex align-items-center gap-3 p-3 bg-secondary bg-opacity-10 rounded-3">
+                <div class="logo-badge bg-success"><i class="fas fa-map-marker-alt text-white"></i></div>
+                <div>
+                  <span class="small text-muted-custom d-block">Location</span>
+                  <strong class="text-white">{{ personal_info.location }}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Availability Tag -->
+          <div class="p-3 bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-3">
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span class="status-dot"></span>
+              <strong class="text-white small">Status: Available for 2025/2026 Opportunities</strong>
+            </div>
+            <p class="small text-secondary-custom mb-0">Expected response turnaround time: within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Contact Form -->
+      <div class="col-lg-7">
+        <div class="custom-card p-4 p-md-5">
+          <div class="mb-4">
+            <h3 class="font-bold text-white mb-2">Send a Direct Message</h3>
+            <p class="text-secondary-custom small mb-0">
+              Fill in the form below and it will be stored securely in the database and sent directly to my inbox.
+            </p>
+          </div>
+
+          <form id="portfolioContactForm" method="POST" action="{{ url_for('main.contact') }}">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="contact-name" class="form-label small text-muted-custom font-bold">Your Name *</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-secondary bg-opacity-10 border-secondary text-muted-custom"><i class="fas fa-user"></i></span>
+                  <input type="text" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" id="contact-name" name="name" value="{{ name or '' }}" placeholder="John Doe" required>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="contact-email" class="form-label small text-muted-custom font-bold">Your Email *</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-secondary bg-opacity-10 border-secondary text-muted-custom"><i class="fas fa-envelope"></i></span>
+                  <input type="email" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" id="contact-email" name="email" value="{{ email or '' }}" placeholder="john@example.com" required>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="contact-subject" class="form-label small text-muted-custom font-bold">Subject *</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-secondary bg-opacity-10 border-secondary text-muted-custom"><i class="fas fa-tag"></i></span>
+                  <input type="text" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" id="contact-subject" name="subject" value="{{ subject or '' }}" placeholder="Internship Opportunity / Project Inquiry" required>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="contact-message" class="form-label small text-muted-custom font-bold">Your Message *</label>
+                <textarea class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" id="contact-message" name="message" rows="5" placeholder="Hi Abhi, I came across your portfolio and wanted to discuss..." required>{{ message or '' }}</textarea>
+              </div>
+
+              <div class="col-12 pt-2">
+                <button type="submit" class="btn-custom-primary btn-lg w-100 justify-content-center">
+                  <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

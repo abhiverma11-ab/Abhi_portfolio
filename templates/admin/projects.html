@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Projects | Admin Dashboard{% endblock %}
+
+{% block content %}
+<section class="py-4 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="font-bold text-white mb-0">Project Management</h2>
+        <span class="small text-muted-custom">Create, update, or remove portfolio showcase projects.</span>
+      </div>
+      <div>
+        <a href="{{ url_for('admin.add_project') }}" class="btn-custom-primary">
+          <i class="fas fa-plus"></i> Add New Project
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Admin Management Bar -->
+<section class="py-3 bg-secondary bg-opacity-10 border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="d-flex flex-wrap gap-2">
+      <a href="{{ url_for('admin.dashboard') }}" class="btn btn-sm btn-custom-outline">Overview</a>
+      <a href="{{ url_for('admin.manage_projects') }}" class="btn btn-sm btn-custom-primary">Manage Projects</a>
+      <a href="{{ url_for('admin.manage_blogs') }}" class="btn btn-sm btn-custom-outline">Manage Blogs</a>
+      <a href="{{ url_for('admin.manage_certificates') }}" class="btn btn-sm btn-custom-outline">Manage Certificates</a>
+      <a href="{{ url_for('admin.manage_skills') }}" class="btn btn-sm btn-custom-outline">Manage Skills</a>
+      <a href="{{ url_for('admin.manage_messages') }}" class="btn btn-sm btn-custom-outline">Inquiries Inbox</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="custom-card p-4">
+      <div class="table-responsive">
+        <table class="table table-dark table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Technologies</th>
+              <th scope="col">Featured</th>
+              <th scope="col" class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for project in projects %}
+            <tr>
+              <td class="font-mono text-muted-custom">{{ project.id }}</td>
+              <td>
+                <strong class="text-white d-block">{{ project.title }}</strong>
+                <span class="small text-info">{{ project.slug }}</span>
+              </td>
+              <td><span class="badge bg-secondary">{{ project.category }}</span></td>
+              <td class="small text-secondary-custom font-mono" style="max-width: 250px;">{{ project.technologies }}</td>
+              <td>
+                {% if project.is_featured %}
+                <span class="badge bg-warning text-dark"><i class="fas fa-check"></i> Featured</span>
+                {% else %}
+                <span class="badge bg-secondary opacity-50">Standard</span>
+                {% endif %}
+              </td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-2">
+                  <a href="{{ url_for('main.project_detail', slug=project.slug) }}" target="_blank" class="btn btn-sm btn-outline-info" title="View Public Page">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                  <a href="{{ url_for('admin.edit_project', id=project.id) }}" class="btn btn-sm btn-custom-outline" title="Edit Project">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <form method="POST" action="{{ url_for('admin.delete_project', id=project.id) }}" onsubmit="return confirm('Are you sure you want to delete this project?');">
+                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Project">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

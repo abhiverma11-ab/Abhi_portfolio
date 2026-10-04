@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects Portfolio | Abhi Verma - AI &amp; Software Developer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container text-center">
+    <div class="section-badge">
+      <i class="fas fa-folder-open"></i> Portfolio Showcase
+    </div>
+    <h1 class="display-4 font-bold mb-3">Featured <span class="text-gradient">Projects</span></h1>
+    <p class="section-subheading">
+      Explore practical software systems, machine learning applications, RAG pipelines, and interactive data analytics dashboards.
+    </p>
+  </div>
+</section>
+
+<!-- Projects Gallery Section -->
+<section class="section-padding">
+  <div class="container">
+    <!-- Controls: Filter Buttons & Search Input -->
+    <div class="row align-items-center mb-5 g-3">
+      <div class="col-lg-8">
+        <div class="filter-btn-group justify-content-lg-start mb-0">
+          <button class="filter-btn {{ 'active' if selected_category == 'All' or not selected_category else '' }}" data-filter="All">All ({{ projects|length }})</button>
+          <button class="filter-btn" data-filter="AI">AI &amp; RAG</button>
+          <button class="filter-btn" data-filter="Machine Learning">Machine Learning</button>
+          <button class="filter-btn" data-filter="Data Analysis">Data Analysis</button>
+          <button class="filter-btn" data-filter="Python">Python</button>
+          <button class="filter-btn" data-filter="Web Development">Web Development</button>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="input-group custom-card p-1">
+          <span class="input-group-text bg-transparent border-0 text-muted-custom"><i class="fas fa-search"></i></span>
+          <input type="text" id="projectSearchInput" class="form-control bg-transparent border-0 text-white shadow-none" placeholder="Search projects or technologies...">
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="row g-4" id="projectsContainer">
+      {% for project in projects %}
+      <div class="col-lg-6 filterable-card" data-category="{{ project.category }}" data-tech="{{ project.technologies }}">
+        <div class="custom-card project-card">
+          <div class="project-img-wrap">
+            <img src="{{ project.image_url }}" alt="{{ project.title }}" loading="lazy">
+            <span class="project-category-badge">{{ project.category }}</span>
+          </div>
+          <div class="project-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h3 class="project-title font-bold mb-0">
+                <a href="{{ url_for('main.project_detail', slug=project.slug) }}" class="text-white">{{ project.title }}</a>
+              </h3>
+              {% if project.is_featured %}
+              <span class="badge bg-warning text-dark small font-bold"><i class="fas fa-star me-1"></i> Featured</span>
+              {% endif %}
+            </div>
+
+            <p class="small text-info mb-3 font-mono">{{ project.subtitle }}</p>
+            <p class="project-desc">{{ project.description }}</p>
+
+            <!-- Key Features Preview -->
+            {% if project.feature_list() %}
+            <div class="mb-3 p-3 bg-secondary bg-opacity-10 rounded-3">
+              <span class="small font-bold text-white d-block mb-1"><i class="fas fa-check-circle text-info me-1"></i> Key Capabilities:</span>
+              <ul class="list-unstyled mb-0 small text-secondary-custom">
+                {% for feat in project.feature_list()[:2] %}
+                <li class="mb-1">• {{ feat }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+
+            <!-- Tech Badges -->
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              {% for tech in project.tech_list() %}
+                <span class="tech-tag">{{ tech }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Footer Action Buttons -->
+            <div class="project-footer">
+              <a href="{{ url_for('main.project_detail', slug=project.slug) }}" class="btn-custom-primary btn-sm">
+                <span>View Full Details</span> <i class="fas fa-arrow-right"></i>
+              </a>
+
+              <div class="d-flex gap-2">
+                {% if project.github_link and project.github_link != '#' %}
+                <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn btn-sm" title="GitHub Source Code">
+                  <i class="fab fa-github"></i>
+                </a>
+                {% endif %}
+                {% if project.live_link and project.live_link != '#' %}
+                <a href="{{ project.live_link }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn btn-sm" title="Live Interactive Demo">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

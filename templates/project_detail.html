@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }} | Project Deep Dive | Abhi Verma{% endblock %}
+
+{% block content %}
+<!-- Project Hero Header -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="mb-3">
+      <a href="{{ url_for('main.projects') }}" class="btn btn-sm btn-custom-outline">
+        <i class="fas fa-arrow-left me-1"></i> Back to Projects Gallery
+      </a>
+    </div>
+
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <span class="badge bg-primary px-3 py-2 rounded-pill font-bold">{{ project.category }}</span>
+          {% if project.is_featured %}
+          <span class="badge bg-warning text-dark px-3 py-2 rounded-pill font-bold"><i class="fas fa-star me-1"></i> Featured Project</span>
+          {% endif %}
+        </div>
+        <h1 class="display-4 font-bold text-white mb-2">{{ project.title }}</h1>
+        <p class="fs-5 text-info font-mono mb-4">{{ project.subtitle }}</p>
+
+        <div class="d-flex flex-wrap gap-3">
+          {% if project.live_link and project.live_link != '#' %}
+          <a href="{{ project.live_link }}" target="_blank" rel="noopener noreferrer" class="btn-custom-primary">
+            <i class="fas fa-external-link-alt"></i> Launch Live Application
+          </a>
+          {% endif %}
+          {% if project.github_link and project.github_link != '#' %}
+          <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" class="btn-custom-outline">
+            <i class="fab fa-github"></i> View GitHub Repository
+          </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Project Tech Stack Pills -->
+      <div class="col-lg-4">
+        <div class="custom-card p-4">
+          <h6 class="text-white font-bold mb-3 text-uppercase small"><i class="fas fa-microchip text-info me-2"></i> Technologies Used</h6>
+          <div class="d-flex flex-wrap gap-2">
+            {% for tech in project.tech_list() %}
+              <span class="tech-tag">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deep Dive Content -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row g-5">
+      <!-- Main Left Column -->
+      <div class="col-lg-8">
+        <!-- Large Banner Image -->
+        <div class="custom-card mb-5 overflow-hidden border-glow">
+          <img src="{{ project.image_url }}" alt="{{ project.title }} Architecture" class="w-100 img-fluid">
+        </div>
+
+        <!-- 1. Executive Summary & Overview -->
+        <div class="custom-card p-4 p-md-5 mb-4">
+          <h3 class="font-bold text-white mb-3"><i class="fas fa-info-circle text-info me-2"></i> Project Overview</h3>
+          <p class="text-secondary-custom leading-relaxed fs-6 mb-0">
+            {{ project.description }}
+          </p>
+        </div>
+
+        <!-- 2. Problem & Solution Split Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div class="custom-card p-4 h-100 border-danger border-opacity-25">
+              <h5 class="font-bold text-danger mb-3"><i class="fas fa-exclamation-triangle me-2"></i> Problem Statement</h5>
+              <p class="text-secondary-custom small mb-0 leading-relaxed">
+                {{ project.problem_statement or "Addressed critical gaps in performance, algorithmic latency, and manual data interpretation by providing an automated solution." }}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="custom-card p-4 h-100 border-success border-opacity-25">
+              <h5 class="font-bold text-success mb-3"><i class="fas fa-lightbulb me-2"></i> Engineered Solution</h5>
+              <p class="text-secondary-custom small mb-0 leading-relaxed">
+                {{ project.solution or "Engineered an intelligent, modular pipeline leveraging Python and machine learning to deliver high-accuracy outputs and interactive visualizations." }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. System Architecture & Pipeline Flow -->
+        {% if project.architecture_desc %}
+        <div class="custom-card p-4 p-md-5 mb-4">
+          <h3 class="font-bold text-white mb-3"><i class="fas fa-network-wired text-info me-2"></i> System Architecture</h3>
+          <div class="p-3 bg-secondary bg-opacity-10 rounded-3 mb-3 font-mono text-info small">
+            {{ project.architecture_desc }}
+          </div>
+          <p class="text-secondary-custom small mb-0">
+            The data pipeline is designed with separation of concerns: ingestion and parsing layer, algorithmic inference &amp; feature transformation layer, and an asynchronous presentation layer.
+          </p>
+        </div>
+        {% endif %}
+
+        <!-- 4. Key Features & Capabilities -->
+        {% if project.feature_list() %}
+        <div class="custom-card p-4 p-md-5 mb-4">
+          <h3 class="font-bold text-white mb-3"><i class="fas fa-tasks text-info me-2"></i> Key Features</h3>
+          <div class="row g-3">
+            {% for feat in project.feature_list() %}
+            <div class="col-12">
+              <div class="d-flex align-items-start gap-3 p-3 bg-secondary bg-opacity-10 rounded-3">
+                <i class="fas fa-check-circle text-success fs-5 mt-1"></i>
+                <div>
+                  <span class="text-white font-bold">{{ feat }}</span>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- 5. Technical Challenges & What I Learned -->
+        <div class="row g-4 mb-4">
+          {% if project.challenges %}
+          <div class="col-md-6">
+            <div class="custom-card p-4 h-100">
+              <h5 class="font-bold text-warning mb-3"><i class="fas fa-wrench me-2"></i> Challenges Faced</h5>
+              <p class="text-secondary-custom small mb-0 leading-relaxed">{{ project.challenges }}</p>
+            </div>
+          </div>
+          {% endif %}
+          {% if project.learnings %}
+          <div class="col-md-6">
+            <div class="custom-card p-4 h-100">
+              <h5 class="font-bold text-info mb-3"><i class="fas fa-graduation-cap me-2"></i> Key Learnings</h5>
+              <p class="text-secondary-custom small mb-0 leading-relaxed">{{ project.learnings }}</p>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <!-- Quick Metadata Widget -->
+        <div class="custom-card p-4 mb-4 sticky-lg-top" style="top: 90px;">
+          <h5 class="font-bold text-white mb-3 border-bottom border-secondary border-opacity-25 pb-2">Project Metadata</h5>
+          <ul class="list-unstyled d-flex flex-column gap-3 small mb-4">
+            <li class="d-flex justify-content-between">
+              <span class="text-muted-custom">Domain:</span>
+              <span class="text-white font-bold">{{ project.category }}</span>
+            </li>
+            <li class="d-flex justify-content-between">
+              <span class="text-muted-custom">Developer:</span>
+              <span class="text-white font-bold">Abhi Verma</span>
+            </li>
+            <li class="d-flex justify-content-between">
+              <span class="text-muted-custom">Specialization:</span>
+              <span class="text-white font-bold">B.Tech CSE (AI &amp; ML)</span>
+            </li>
+          </ul>
+
+          <div class="d-grid gap-2">
+            {% if project.live_link and project.live_link != '#' %}
+            <a href="{{ project.live_link }}" target="_blank" rel="noopener noreferrer" class="btn-custom-primary text-center justify-content-center">
+              <i class="fas fa-play"></i> Launch Demo
+            </a>
+            {% endif %}
+            {% if project.github_link and project.github_link != '#' %}
+            <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" class="btn-custom-outline text-center justify-content-center">
+              <i class="fab fa-github"></i> Repository
+            </a>
+            {% endif %}
+            <a href="{{ url_for('main.contact') }}" class="btn btn-sm btn-outline-secondary mt-2">
+              <i class="fas fa-comment-dots me-1"></i> Discuss this Project
+            </a>
+          </div>
+
+          <!-- Related Projects -->
+          {% if related_projects %}
+          <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+            <h6 class="font-bold text-white mb-3 small text-uppercase">More In {{ project.category }}</h6>
+            {% for rel in related_projects %}
+            <div class="mb-3">
+              <a href="{{ url_for('main.project_detail', slug=rel.slug) }}" class="text-white text-decoration-none font-bold hover-gradient small d-block mb-1">
+                {{ rel.title }}
+              </a>
+              <span class="text-muted-custom small font-mono">{{ rel.category }}</span>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

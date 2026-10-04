@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Tech Blog &amp; Learning Journey | Abhi Verma - AI &amp; Software Engineer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container text-center">
+    <div class="section-badge">
+      <i class="fas fa-feather-alt"></i> Tech Notes &amp; Tutorials
+    </div>
+    <h1 class="display-4 font-bold mb-3">Blog &amp; <span class="text-gradient">Learning Journey</span></h1>
+    <p class="section-subheading">
+      Documenting technical experiments, algorithm deep dives, architecture decisions, and reflections along my journey in Artificial Intelligence.
+    </p>
+  </div>
+</section>
+
+<!-- Blog Section -->
+<section class="section-padding">
+  <div class="container">
+    <!-- Filters & Search -->
+    <div class="row align-items-center mb-5 g-3">
+      <div class="col-lg-8">
+        <div class="filter-btn-group justify-content-lg-start mb-0">
+          {% for cat in categories %}
+          <a href="{{ url_for('main.blog', category=cat) }}" class="filter-btn {{ 'active' if selected_category == cat else '' }}">
+            {{ cat }}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <form method="GET" action="{{ url_for('main.blog') }}">
+          {% if selected_category and selected_category != 'All' %}
+          <input type="hidden" name="category" value="{{ selected_category }}">
+          {% endif %}
+          <div class="input-group custom-card p-1">
+            <span class="input-group-text bg-transparent border-0 text-muted-custom"><i class="fas fa-search"></i></span>
+            <input type="text" name="q" value="{{ search_query }}" class="form-control bg-transparent border-0 text-white shadow-none" placeholder="Search blog articles...">
+            <button class="btn btn-sm btn-custom-primary" type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Blog Posts Grid -->
+    {% if posts %}
+    <div class="row g-4">
+      {% for post in posts %}
+      <div class="col-lg-4 col-md-6">
+        <div class="custom-card h-100 d-flex flex-column">
+          <div style="height: 200px; overflow: hidden; background: #0f172a;">
+            <img src="{{ post.image_url }}" alt="{{ post.title }}" class="w-100 h-100 object-fit-cover" loading="lazy">
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="badge bg-primary bg-opacity-25 text-info border border-info border-opacity-25 small">{{ post.category }}</span>
+              <span class="small text-muted-custom font-mono">{{ post.read_time }}</span>
+            </div>
+            <h5 class="font-bold text-white mb-2">
+              <a href="{{ url_for('main.blog_detail', slug=post.slug) }}" class="text-white text-decoration-none hover-gradient">{{ post.title }}</a>
+            </h5>
+            <p class="small text-secondary-custom mb-4 flex-grow-1">{{ post.excerpt }}</p>
+            <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto d-flex justify-content-between align-items-center">
+              <span class="small text-muted-custom">{{ post.published_at.strftime('%b %d, %Y') }}</span>
+              <a href="{{ url_for('main.blog_detail', slug=post.slug) }}" class="small text-info font-bold text-decoration-none">
+                Read More <i class="fas fa-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="custom-card p-5 text-center my-5">
+      <i class="fas fa-search fs-1 text-muted-custom mb-3"></i>
+      <h4 class="font-bold text-white mb-2">No Articles Found</h4>
+      <p class="text-secondary-custom mb-4">No blog posts matched your search criteria. Try a different category or search term.</p>
+      <a href="{{ url_for('main.blog') }}" class="btn-custom-outline">View All Articles</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

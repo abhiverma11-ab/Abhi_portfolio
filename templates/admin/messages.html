@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Inquiries Inbox | Admin Dashboard{% endblock %}
+
+{% block content %}
+<section class="py-4 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="font-bold text-white mb-0">Contact Inquiries Inbox</h2>
+        <span class="small text-muted-custom">Messages submitted by recruiters, peers, and collaborators via the contact form.</span>
+      </div>
+      <div>
+        <a href="{{ url_for('admin.dashboard') }}" class="btn-custom-outline btn-sm">
+          <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Admin Management Bar -->
+<section class="py-3 bg-secondary bg-opacity-10 border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="d-flex flex-wrap gap-2">
+      <a href="{{ url_for('admin.dashboard') }}" class="btn btn-sm btn-custom-outline">Overview</a>
+      <a href="{{ url_for('admin.manage_projects') }}" class="btn btn-sm btn-custom-outline">Manage Projects</a>
+      <a href="{{ url_for('admin.manage_blogs') }}" class="btn btn-sm btn-custom-outline">Manage Blogs</a>
+      <a href="{{ url_for('admin.manage_certificates') }}" class="btn btn-sm btn-custom-outline">Manage Certificates</a>
+      <a href="{{ url_for('admin.manage_skills') }}" class="btn btn-sm btn-custom-outline">Manage Skills</a>
+      <a href="{{ url_for('admin.manage_messages') }}" class="btn btn-sm btn-custom-primary">Inquiries Inbox</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    {% if messages %}
+    <div class="d-flex flex-column gap-4">
+      {% for msg in messages %}
+      <div class="custom-card p-4 {{ 'border-info border-2' if not msg.is_read else '' }}">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-2 mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+          <div>
+            <div class="d-flex align-items-center gap-2">
+              <h5 class="font-bold text-white mb-0">{{ msg.name }}</h5>
+              {% if not msg.is_read %}
+              <span class="badge bg-danger">New / Unread</span>
+              {% else %}
+              <span class="badge bg-secondary">Read</span>
+              {% endif %}
+            </div>
+            <a href="mailto:{{ msg.email }}" class="small text-info text-decoration-none">&lt;{{ msg.email }}&gt;</a>
+          </div>
+          <div class="text-md-end text-start">
+            <span class="small text-muted-custom font-mono">{{ msg.created_at.strftime('%B %d, %Y at %I:%M %p') }}</span>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <span class="small font-bold text-muted-custom d-block">Subject:</span>
+          <strong class="text-white fs-6">{{ msg.subject }}</strong>
+        </div>
+
+        <div class="p-3 bg-secondary bg-opacity-10 rounded-3 mb-4 text-secondary-custom leading-relaxed">
+          {{ msg.message }}
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a href="mailto:{{ msg.email }}?subject=Re: {{ msg.subject }}" class="btn btn-sm btn-custom-primary">
+            <i class="fas fa-reply me-1"></i> Reply via Email
+          </a>
+          <form method="POST" action="{{ url_for('admin.toggle_message_read', id=msg.id) }}" class="d-inline">
+            <button type="submit" class="btn btn-sm btn-custom-outline">
+              <i class="fas {{ 'fa-envelope' if msg.is_read else 'fa-envelope-open' }} me-1"></i>
+              {{ 'Mark as Unread' if msg.is_read else 'Mark as Read' }}
+            </button>
+          </form>
+          <form method="POST" action="{{ url_for('admin.delete_message', id=msg.id) }}" onsubmit="return confirm('Delete this message permanently?');" class="d-inline">
+            <button type="submit" class="btn btn-sm btn-outline-danger">
+              <i class="fas fa-trash-alt me-1"></i> Delete
+            </button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="custom-card p-5 text-center my-5">
+      <i class="fas fa-inbox fs-1 text-muted-custom mb-3"></i>
+      <h4 class="font-bold text-white mb-2">Inbox is Empty</h4>
+      <p class="text-secondary-custom mb-0">No contact messages submitted yet.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

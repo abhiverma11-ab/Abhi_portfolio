@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} | Admin Dashboard{% endblock %}
+
+{% block content %}
+<section class="py-4 bg-glass border-bottom border-secondary border-opacity-25">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="font-bold text-white mb-0">{{ title }}</h2>
+        <span class="small text-muted-custom">Draft and publish technical articles.</span>
+      </div>
+      <div>
+        <a href="{{ url_for('admin.manage_blogs') }}" class="btn-custom-outline btn-sm">
+          <i class="fas fa-arrow-left me-1"></i> Back to Blogs
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="custom-card p-4 p-md-5 mx-auto" style="max-width: 860px;">
+      <form method="POST">
+        <div class="row g-4">
+          <div class="col-md-8">
+            <label class="form-label small text-muted-custom font-bold">Article Title *</label>
+            <input type="text" name="title" value="{{ blog.title if blog else '' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required placeholder="e.g. My Roadmap Towards AI Engineering">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small text-muted-custom font-bold">Category *</label>
+            <select name="category" class="form-select bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required>
+              <option value="AI" {% if blog and blog.category == 'AI' %}selected{% endif %}>AI</option>
+              <option value="Machine Learning" {% if blog and blog.category == 'Machine Learning' %}selected{% endif %}>Machine Learning</option>
+              <option value="Data Analysis" {% if blog and blog.category == 'Data Analysis' %}selected{% endif %}>Data Analysis</option>
+              <option value="Python" {% if blog and blog.category == 'Python' %}selected{% endif %}>Python</option>
+              <option value="Web Dev" {% if blog and blog.category == 'Web Dev' %}selected{% endif %}>Web Dev</option>
+              <option value="Career" {% if blog and blog.category == 'Career' %}selected{% endif %}>Career</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">Estimated Read Time</label>
+            <input type="text" name="read_time" value="{{ blog.read_time if blog else '5 min read' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" placeholder="e.g. 5 min read">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small text-muted-custom font-bold">Cover Image URL</label>
+            <input type="text" name="image_url" value="{{ blog.image_url if blog else '/static/images/blog-placeholder.svg' }}" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Short Excerpt (Displayed on Cards) *</label>
+            <textarea name="excerpt" rows="2" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none" required placeholder="Brief summary of the article...">{{ blog.excerpt if blog else '' }}</textarea>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label small text-muted-custom font-bold">Full Article Content (Markdown / HTML supported) *</label>
+            <textarea name="content" rows="12" class="form-control bg-secondary bg-opacity-10 border-secondary text-white shadow-none font-mono" required placeholder="Write your article content here...">{{ blog.content if blog else '' }}</textarea>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1" {% if not blog or blog.is_published %}checked{% endif %}>
+              <label class="form-check-label text-white" for="is_published">Publish immediately on website</label>
+            </div>
+          </div>
+
+          <div class="col-12 pt-3">
+            <button type="submit" class="btn-custom-primary btn-lg w-100 justify-content-center">
+              <i class="fas fa-save me-2"></i> Save &amp; Publish Post
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
