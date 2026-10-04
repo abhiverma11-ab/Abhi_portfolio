@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)" rx="16"/>
+  <rect x="40" y="40" width="720" height="370" rx="12" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="70" y="100" fill="#c084fc" font-family="'Outfit', sans-serif" font-size="28" font-weight="bold">🧠 Understanding Machine Learning</text>
+  <text x="70" y="140" fill="#cbd5e1" font-size="16">Core Supervised &amp; Unsupervised Algorithms Explained with Intuition</text>
+  <rect x="70" y="170" width="660" height="200" rx="8" fill="#090d16"/>
+  <text x="100" y="220" fill="#38bdf8" font-family="'Outfit', sans-serif" font-size="20">Linear &amp; Logistic Regression • Cost Optimization</text>
+  <text x="100" y="260" fill="#f472b6" font-family="'Outfit', sans-serif" font-size="20">Decision Trees &amp; Random Forests • Gini Impurity</text>
+  <text x="100" y="300" fill="#34d399" font-family="'Outfit', sans-serif" font-size="20">K-Means Clustering &amp; Centroid Convergence</text>
+  <text x="100" y="340" fill="#fbbf24" font-family="'Outfit', sans-serif" font-size="20">Neural Network Perceptrons &amp; Backpropagation</text>
+</svg>

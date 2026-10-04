@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="track-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" rx="16" fill="url(#bg)"/>
+
+  <!-- Top bar -->
+  <rect x="30" y="30" width="740" height="50" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <circle cx="55" cy="55" r="7" fill="#ef4444"/>
+  <circle cx="75" cy="55" r="7" fill="#f59e0b"/>
+  <circle cx="95" cy="55" r="7" fill="#10b981"/>
+  <text x="130" y="60" fill="#f8fafc" font-family="'Outfit', sans-serif" font-size="16" font-weight="bold">AI TRAIN TRAFFIC CONTROL • REAL-TIME DIGITAL TWIN</text>
+  <rect x="620" y="42" width="130" height="26" rx="6" fill="#10b981" opacity="0.2"/>
+  <text x="685" y="59" fill="#10b981" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">LIVE SIMULATION</text>
+
+  <!-- Left: Control Telemetry -->
+  <g transform="translate(30, 100)">
+    <rect width="230" height="360" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="35" fill="#f8fafc" font-family="'Outfit', sans-serif" font-size="15" font-weight="600">Network Telemetry</text>
+
+    <rect x="15" y="55" width="200" height="60" rx="8" fill="#1e293b"/>
+    <text x="25" y="78" fill="#94a3b8" font-size="11">Active Trains Monitored</text>
+    <text x="25" y="103" fill="#00f2fe" font-family="'Outfit', sans-serif" font-size="22" font-weight="bold">24 Express Units</text>
+
+    <rect x="15" y="125" width="200" height="60" rx="8" fill="#1e293b"/>
+    <text x="25" y="148" fill="#94a3b8" font-size="11">Junction Bottleneck Risk</text>
+    <text x="25" y="173" fill="#10b981" font-family="'Outfit', sans-serif" font-size="22" font-weight="bold">Low (0.04 ms)</text>
+
+    <rect x="15" y="195" width="200" height="60" rx="8" fill="#1e293b"/>
+    <text x="25" y="218" fill="#94a3b8" font-size="11">Cumulative Delay Saved</text>
+    <text x="25" y="243" fill="#f59e0b" font-family="'Outfit', sans-serif" font-size="22" font-weight="bold">42.5 min / hr</text>
+
+    <rect x="15" y="270" width="200" height="75" rx="8" fill="rgba(0, 242, 254, 0.08)" stroke="#00f2fe" stroke-width="1"/>
+    <text x="25" y="295" fill="#38bdf8" font-size="12" font-weight="bold">⚡ AI Optimization</text>
+    <text x="25" y="320" fill="#94a3b8" font-size="11">Dynamic A* Heuristic Rerouting Active</text>
+  </g>
+
+  <!-- Right: Digital Twin Canvas Junction Map -->
+  <g transform="translate(280, 100)">
+    <rect width="490" height="360" rx="12" fill="#0b1120" stroke="#334155" stroke-width="1.5"/>
+
+    <!-- Grid / Tracks -->
+    <line x1="40" y1="90" x2="450" y2="90" stroke="#1e293b" stroke-width="6"/>
+    <line x1="40" y1="90" x2="450" y2="90" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6"/>
+
+    <line x1="40" y1="180" x2="450" y2="180" stroke="#1e293b" stroke-width="6"/>
+    <line x1="40" y1="180" x2="450" y2="180" stroke="#00f2fe" stroke-width="2"/>
+
+    <line x1="40" y1="270" x2="450" y2="270" stroke="#1e293b" stroke-width="6"/>
+    <line x1="40" y1="270" x2="450" y2="270" stroke="#818cf8" stroke-width="2" stroke-dasharray="10 4"/>
+
+    <!-- Junction crossover switch -->
+    <path d="M 160 90 Q 240 135 320 180" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="5 5"/>
+    <path d="M 180 180 Q 260 225 340 270" fill="none" stroke="#10b981" stroke-width="3"/>
+
+    <!-- Train Nodes on Track -->
+    <!-- Train A -->
+    <rect x="220" y="168" width="60" height="24" rx="6" fill="#00f2fe"/>
+    <text x="250" y="184" fill="#090d16" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">TR-102</text>
+    <circle cx="285" cy="180" r="4" fill="#ef4444"/>
+
+    <!-- Train B -->
+    <rect x="80" y="78" width="60" height="24" rx="6" fill="#38bdf8"/>
+    <text x="110" y="94" fill="#090d16" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">TR-408</text>
+
+    <!-- Train C -->
+    <rect x="360" y="258" width="60" height="24" rx="6" fill="#10b981"/>
+    <text x="390" y="274" fill="#090d16" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">TR-911</text>
+
+    <!-- Junction Junction Nodes -->
+    <circle cx="160" cy="90" r="7" fill="#f59e0b"/>
+    <circle cx="320" cy="180" r="7" fill="#f59e0b"/>
+    <text x="320" y="210" fill="#f59e0b" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Junction Alpha (Clear)</text>
+
+    <!-- Live Status ticker at bottom -->
+    <rect x="20" y="315" width="450" height="30" rx="6" fill="#1e293b"/>
+    <text x="35" y="335" fill="#94a3b8" font-family="monospace" font-size="11">▶ Dynamic Dispatch: TR-102 given priority switch at Alpha +2m</text>
+  </g>
+</svg>

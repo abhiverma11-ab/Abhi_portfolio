@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)" rx="16"/>
+  <rect x="40" y="40" width="720" height="370" rx="12" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="70" y="100" fill="#c084fc" font-family="'Outfit', sans-serif" font-size="28" font-weight="bold">⚡ HackAI Student Innovation Challenge</text>
+  <text x="70" y="140" fill="#cbd5e1" font-size="16">StudyLens AI - Retrieval-Augmented Academic Assistant</text>
+  <rect x="70" y="170" width="660" height="200" rx="8" fill="#0b0e1b"/>
+  <text x="100" y="220" fill="#f8fafc" font-family="'Outfit', sans-serif" font-size="20" font-weight="bold">Problem: Dense Academic Paper &amp; Textbook Digestion</text>
+  <text x="100" y="260" fill="#00f2fe" font-size="16">Solution: Vector Embeddings, Semantic Search &amp; Flashcard Generator</text>
+  <text x="100" y="300" fill="#38bdf8" font-size="16">Stack: Python, Flask, PyTorch, Transformers, SQLite, Bootstrap 5</text>
+  <text x="100" y="340" fill="#a78bfa" font-size="16" font-weight="bold">Outcome: Top 5 Finalist &amp; Best AI UX Award</text>
+</svg>

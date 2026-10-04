@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Certificate Outer Border -->
+  <rect width="800" height="550" fill="#0f172a" stroke="url(#gold-grad)" stroke-width="12" rx="16"/>
+  <rect x="25" y="25" width="750" height="500" fill="#090d16" stroke="url(#gold-grad)" stroke-width="2" rx="8"/>
+
+  <!-- Seal / Badge -->
+  <circle cx="400" cy="110" r="45" fill="none" stroke="url(#gold-grad)" stroke-width="3"/>
+  <circle cx="400" cy="110" r="35" fill="rgba(245, 158, 11, 0.15)"/>
+  <polygon points="400,80 408,100 430,102 414,116 419,138 400,126 381,138 386,116 370,102 392,100" fill="url(#gold-grad)"/>
+
+  <!-- Texts -->
+  <text x="400" y="195" fill="url(#gold-grad)" font-family="'Outfit', sans-serif" font-size="24" font-weight="bold" letter-spacing="4" text-anchor="middle">CERTIFICATE OF RECOGNITION</text>
+  <text x="400" y="235" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="14" text-anchor="middle">THIS IS PROUDLY PRESENTED TO</text>
+  <text x="400" y="285" fill="#f8fafc" font-family="'Outfit', sans-serif" font-size="34" font-weight="bold" text-anchor="middle">Abhi Verma</text>
+  <line x1="250" y1="305" x2="550" y2="305" stroke="#334155" stroke-width="1.5"/>
+
+  <text x="400" y="345" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="16" text-anchor="middle">For Outstanding Technical Mastery &amp; Academic Excellence</text>
+  <text x="400" y="375" fill="#64748b" font-family="'Inter', sans-serif" font-size="14" text-anchor="middle">Issued by Accredited Technical Partner</text>
+
+  <!-- Signatures -->
+  <line x1="120" y1="460" x2="280" y2="460" stroke="#475569" stroke-width="1.5"/>
+  <text x="200" y="485" fill="#94a3b8" font-size="12" text-anchor="middle">Authorized Director</text>
+
+  <line x1="520" y1="460" x2="680" y2="460" stroke="#475569" stroke-width="1.5"/>
+  <text x="600" y="485" fill="#94a3b8" font-size="12" text-anchor="middle">Program Lead</text>
+</svg>

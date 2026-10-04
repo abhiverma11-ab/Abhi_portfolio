@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#4facfe"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="550" fill="#0b1120" stroke="url(#gold-grad)" stroke-width="10" rx="16"/>
+  <rect x="25" y="25" width="750" height="500" fill="#0f172a" stroke="#1e293b" stroke-width="2" rx="8"/>
+
+  <circle cx="400" cy="100" r="40" fill="none" stroke="url(#gold-grad)" stroke-width="3"/>
+  <text x="400" y="108" fill="#00f2fe" font-family="'Outfit', sans-serif" font-size="28" font-weight="bold" text-anchor="middle">★</text>
+
+  <text x="400" y="175" fill="#38bdf8" font-family="'Outfit', sans-serif" font-size="22" font-weight="bold" letter-spacing="3" text-anchor="middle">CERTIFICATE OF SUMMER TRAINING EXCELLENCE</text>
+  <text x="400" y="215" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="13" text-anchor="middle">THIS IS TO CERTIFY THAT</text>
+  <text x="400" y="265" fill="#f8fafc" font-family="'Outfit', sans-serif" font-size="34" font-weight="bold" text-anchor="middle">Abhi Verma</text>
+  <line x1="220" y1="285" x2="580" y2="285" stroke="#334155" stroke-width="1.5"/>
+
+  <text x="400" y="325" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="15" text-anchor="middle">Has successfully completed the intensive hands-on Summer Internship &amp; Training in</text>
+  <text x="400" y="355" fill="#00f2fe" font-family="'Outfit', sans-serif" font-size="18" font-weight="bold" text-anchor="middle">Python Programming, Data Science &amp; Machine Learning</text>
+  <text x="400" y="385" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="13" text-anchor="middle">Developed: "IPL Data Analysis &amp; Match Prediction Dashboard" | Grade: A+ (Outstanding)</text>
+
+  <text x="400" y="420" fill="#64748b" font-family="'Inter', sans-serif" font-size="13" text-anchor="middle">Issued by Apex AI &amp; Data Analytics Labs • June – August 2025</text>
+
+  <line x1="120" y1="480" x2="280" y2="480" stroke="#475569" stroke-width="1.5"/>
+  <text x="200" y="505" fill="#94a3b8" font-size="11" text-anchor="middle">Lead ML Instructor</text>
+
+  <line x1="520" y1="480" x2="680" y2="480" stroke="#475569" stroke-width="1.5"/>
+  <text x="600" y="505" fill="#94a3b8" font-size="11" text-anchor="middle">Director of Academics</text>
+</svg>

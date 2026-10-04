@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#180c04"/>
+      <stop offset="100%" stop-color="#3b1506"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)" rx="16"/>
+  <rect x="40" y="40" width="720" height="370" rx="12" fill="#291206" stroke="#f97316" stroke-width="2"/>
+  <text x="70" y="100" fill="#fb923c" font-family="'Outfit', sans-serif" font-size="28" font-weight="bold">🏆 Smart India Hackathon (SIH)</text>
+  <text x="70" y="140" fill="#fed7aa" font-size="16">College Finalist: AI-Powered Train Traffic Control System</text>
+  <rect x="70" y="170" width="660" height="200" rx="8" fill="#140702"/>
+  <text x="100" y="220" fill="#f8fafc" font-family="'Outfit', sans-serif" font-size="20" font-weight="bold">Problem: Railway Junction Delays &amp; Bottlenecks</text>
+  <text x="100" y="260" fill="#38bdf8" font-size="16">Solution: Real-Time Digital Twin &amp; Heuristic Dispatch Optimization</text>
+  <text x="100" y="300" fill="#34d399" font-size="16">Stack: Python, Flask, SimPy, WebSockets, HTML5 Canvas</text>
+  <text x="100" y="340" fill="#fbbf24" font-size="16" font-weight="bold">Outcome: 1st Place College Nominee &amp; Prototype Demonstration</text>
+</svg>

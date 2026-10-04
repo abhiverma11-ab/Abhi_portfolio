@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)" rx="16"/>
+  <rect x="40" y="40" width="720" height="370" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="70" y="100" fill="#60a5fa" font-family="'Outfit', sans-serif" font-size="28" font-weight="bold">🐍 My Journey Learning Python</text>
+  <text x="70" y="140" fill="#94a3b8" font-size="16">From Syntax to Data Structures, List Comprehensions &amp; OOP</text>
+  <rect x="70" y="170" width="660" height="200" rx="8" fill="#0f172a"/>
+  <text x="90" y="215" fill="#38bdf8" font-family="monospace" font-size="16">def master_python():</text>
+  <text x="120" y="250" fill="#a78bfa" font-family="monospace" font-size="16">skills = ['Syntax', 'DataStructures', 'OOP', 'NumPy', 'Pandas']</text>
+  <text x="120" y="285" fill="#34d399" font-family="monospace" font-size="16">return [build_real_project(s) for s in skills]</text>
+  <text x="90" y="325" fill="#f59e0b" font-family="monospace" font-size="16"># 10x Velocity Unlocked!</text>
+</svg>

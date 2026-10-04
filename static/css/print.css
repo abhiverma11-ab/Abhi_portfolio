@@ -1,0 +1,69 @@
+/* Print stylesheet for Resume PDF export */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #1a202c !important;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  .main-navbar,
+  .main-footer,
+  .back-to-top,
+  .no-print,
+  .btn,
+  .resume-actions-bar {
+    display: none !important;
+  }
+
+  .resume-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+  }
+
+  .custom-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .resume-header {
+    border-bottom: 2px solid #2b6cb0 !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .resume-section-title {
+    color: #2b6cb0 !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding-bottom: 4px !important;
+    margin-top: 16px !important;
+    margin-bottom: 10px !important;
+    font-size: 13pt !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  a {
+    color: #2b6cb0 !important;
+    text-decoration: none !important;
+  }
+
+  .badge, .tech-tag {
+    border: 1px solid #cbd5e0 !important;
+    color: #2d3748 !important;
+    background: #edf2f7 !important;
+    padding: 2px 6px !important;
+    font-size: 9pt !important;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+}
